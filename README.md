@@ -1,3 +1,8 @@
+A Telegram bot I made for a private group that starts our own CS:GO server when needed. Comands:
+
+    /start
+    /help
+
 # Setup
 
 Install requirements:
@@ -10,10 +15,6 @@ Create the `keys.py` file with all the settings and API keys:
     ServerInstanceID = "..."
     AwsKey = "..."
     AwsSecret = "..."
-
-Configure AWS CLI with your credentials:
-
-    aws configure
 
 # Run
 
