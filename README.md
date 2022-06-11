@@ -17,4 +17,4 @@ Configure AWS CLI with your credentials:
 
 # Run
 
-      python3 main.py
+    python3 main.py
