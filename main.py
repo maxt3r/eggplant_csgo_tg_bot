@@ -20,6 +20,8 @@ awsResource = boto3.resource(
 
 
 async def start(update: Update, context):
+    if await check_reconnecting(update, context):
+        return
     # check if the server is already running
     instance = awsResource.Instance(keys.ServerInstanceID)
     if instance.state["Name"] == "running":
@@ -47,6 +49,9 @@ async def help(update: Update, context):
 
 
 async def status(update: Update, context):
+    if await check_reconnecting(update, context):
+        return
+
     res = subprocess.run(
         "gamedig --type csgo " + keys.ServerIP, stdout=subprocess.PIPE, shell=True
     ).stdout.decode("utf-8")
@@ -66,6 +71,18 @@ async def status(update: Update, context):
     await context.bot.send_message(
         chat_id=update.effective_chat.id, text=text, parse_mode="MarkdownV2"
     )
+
+
+async def check_reconnecting(update: Update, context):
+    if update.effective_user.username == "milfgard":
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text="Серёг, отъебись плз",
+            parse_mode="MarkdownV2",
+        )
+        return True
+    else:
+        return False
 
 
 if __name__ == "__main__":
