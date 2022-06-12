@@ -59,7 +59,7 @@ async def status(update: Update, context):
         )
         return
 
-    text = "🔥 Сервер работает\. Карта ```{map}```\. Играют ```{num_players}``` человек\.".format(
+    text = "🔥 Сервер работает\. Карта `{map}`\. Играют `{num_players}` овощей\.".format(
         map=server_info["map"], num_players=server_info["raw"]["numplayers"]
     )
 
