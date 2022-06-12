@@ -40,6 +40,8 @@ async def start(update: Update, context):
 
 
 async def help(update: Update, context):
+    if await check_reconnecting(update, context):
+        return
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
         text="Бот умеет включать основной сервер: нужно написать `/start` и все\. Еще можно написать `/status`\. Код [тут](https://github.com/maxt3r/eggplant_csgo_tg_bot) 🍆💦",
@@ -75,11 +77,11 @@ async def status(update: Update, context):
 
 async def check_reconnecting(update: Update, context):
     if update.effective_user.username == "milfgard":
-        await context.bot.send_message(
-            chat_id=update.effective_chat.id,
-            text="Серёг, отъебись плз",
-            parse_mode="MarkdownV2",
-        )
+        # await context.bot.send_message(
+        #     chat_id=update.effective_chat.id,
+        #     text="Серёг, отъебись плз",
+        #     parse_mode="MarkdownV2",
+        # )
         return True
     else:
         return False
