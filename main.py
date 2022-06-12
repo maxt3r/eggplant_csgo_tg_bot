@@ -40,7 +40,7 @@ async def start(update: Update, context):
 async def help(update: Update, context):
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Бот умеет включать основной сервер: нужно написать ```/start``` и все\. Еще можно написать ```/status```\. Код [тут](https://github.com/maxt3r/eggplant_csgo_tg_bot) 🍆💦",
+        text="Бот умеет включать основной сервер: нужно написать `/start` и все\. Еще можно написать `/status`\. Код [тут](https://github.com/maxt3r/eggplant_csgo_tg_bot) 🍆💦",
         disable_web_page_preview=True,
         parse_mode="MarkdownV2",
     )
