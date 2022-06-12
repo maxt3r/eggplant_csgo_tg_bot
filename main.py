@@ -48,7 +48,7 @@ async def help(update: Update, context):
 
 async def status(update: Update, context):
     res = subprocess.run(
-        "gamedig --type csgo 13.53.247.168:27049", stdout=subprocess.PIPE, shell=True
+        "gamedig --type csgo " + keys.ServerIP, stdout=subprocess.PIPE, shell=True
     ).stdout.decode("utf-8")
     server_info = json.loads(res)
 
@@ -59,9 +59,9 @@ async def status(update: Update, context):
         )
         return
 
-    text = "🔥 Сервер работает\. Карта `{map}`\. Играют `{num_players}` овощей\.".format(
-        map=server_info["map"], num_players=server_info["raw"]["numplayers"]
-    )
+    map = server_info["map"]
+    num_players = server_info["raw"]["numplayers"]
+    text = f"🔥 Сервер работает\. Карта `{map}`\. Играют `{num_players}` овощей\."
 
     await context.bot.send_message(
         chat_id=update.effective_chat.id, text=text, parse_mode="MarkdownV2"
