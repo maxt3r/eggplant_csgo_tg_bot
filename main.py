@@ -76,16 +76,7 @@ async def status(update: Update, context):
 
 
 async def check_reconnecting(update: Update, context):
-    if update.effective_user.username == "milfgard":
-        # await context.bot.send_message(
-        #     chat_id=update.effective_chat.id,
-        #     text="Серёг, отъебись плз",
-        #     parse_mode="MarkdownV2",
-        # )
-        return True
-    else:
-        return False
-
+    return update.effective_user.username == "milfgard"
 
 if __name__ == "__main__":
     application = ApplicationBuilder().token(keys.BotToken).build()
