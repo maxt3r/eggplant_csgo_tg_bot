@@ -20,7 +20,7 @@ awsResource = boto3.resource(
 
 
 async def start(update: Update, context):
-    if await check_reconnecting(update, context):
+    if check_reconnecting(update, context):
         return
     # check if the server is already running
     instance = awsResource.Instance(keys.ServerInstanceID)
@@ -40,7 +40,7 @@ async def start(update: Update, context):
 
 
 async def help(update: Update, context):
-    if await check_reconnecting(update, context):
+    if check_reconnecting(update, context):
         return
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -51,7 +51,7 @@ async def help(update: Update, context):
 
 
 async def status(update: Update, context):
-    if await check_reconnecting(update, context):
+    if check_reconnecting(update, context):
         return
 
     res = subprocess.run(
@@ -76,7 +76,7 @@ async def status(update: Update, context):
     )
 
 
-async def check_reconnecting(update: Update, context):
+def check_reconnecting(update: Update, context):
     return update.effective_user.username == "milfgard"
 
 if __name__ == "__main__":
