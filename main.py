@@ -62,7 +62,7 @@ async def status(update: Update, context):
     if "error" in server_info:
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text="😞 Cервер выключен\. `\start` чтобы включить\.",
+            text="😞 Cервер выключен\. `/start` чтобы включить\.",
             parse_mode = "MarkdownV2"
         )
         return
