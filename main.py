@@ -55,7 +55,7 @@ async def status(update: Update, context):
         return
 
     res = subprocess.run(
-        "gamedig --type csgo " + keys.ServerIP, stdout=subprocess.PIPE, shell=True
+        f"gamedig --type csgo {keys.ServerIP}:{keys.ServerCsPort}", stdout=subprocess.PIPE, shell=True
     ).stdout.decode("utf-8")
     server_info = json.loads(res)
 
@@ -83,7 +83,8 @@ async def status(update: Update, context):
     else:
         text += " Никто не играет\."
 
-    text += f"\n\nСпектейт: `connect {keys.GotvIP}`"
+    text += f"\n\nИграть: `connect {keys.ServerIP}:{keys.ServerCsPort}; password {keys.ServerPassword}`"
+    text += f"\nСпектейтить: `connect {keys.ServerIP}:{keys.ServerGotvPort}; password {keys.ServerPassword}`"
 
     await context.bot.send_message(
         chat_id=update.effective_chat.id, text=text, parse_mode="MarkdownV2"
