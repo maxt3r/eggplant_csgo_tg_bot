@@ -68,13 +68,20 @@ async def status(update: Update, context):
         return
 
     map = server_info["map"]
-    num_players = server_info["raw"]["numplayers"]
-    text = f"🔥 Сервер работает\. Карта `{map}`\. Играют `{num_players}` овощей\.\n\nСписок овощей:\n"
+    num_players = 0
+    text = f"🔥 Сервер работает\. Карта `{map}`\."
 
+    players_list = ""
     for player in server_info["players"]:
         name = player["name"]
-        if name != "GOTV":
-            text += f"`{name}`\n"
+        if name not in ["GOTV", "Ovoschi TV"]:
+            players_list += f"`{name}`\n"
+            num_players += 1
+
+    if num_players > 0:
+        text += f"Играют `{num_players}` овощей\:\n\n" + players_list
+    else:
+        text += " Никто не играет\."
 
     await context.bot.send_message(
         chat_id=update.effective_chat.id, text=text, parse_mode="MarkdownV2"
