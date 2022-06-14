@@ -83,6 +83,8 @@ async def status(update: Update, context):
     else:
         text += " Никто не играет\."
 
+    text += f"\n\nСпектейт: `connect {keys.GotvIP}`"
+
     await context.bot.send_message(
         chat_id=update.effective_chat.id, text=text, parse_mode="MarkdownV2"
     )
